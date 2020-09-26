@@ -1,0 +1,74 @@
+//本关任务：已知顺序表L中的数据元素递增有序，数据元素类型为int。相关定义如下：
+#define LIST_INIT_SIZE 20
+#define LISTINCREMENT 10
+typedef int ElemType;
+typedef struct
+   { ElemType *elem;
+     int length;
+     int listsize;
+    } SqList;
+试写一算法，将x插入到顺序表的适当位置上，以保持该表的有序性。
+函数原型：int insert(SqList &L,ElemType x);
+
+//
+
+#include<cstdio>
+#include<cstdlib>
+
+#define LIST_INIT_SIZE 20
+#define LISTINCREMENT 10
+typedef int ElemType;
+typedef struct {
+    ElemType *elem;
+    int length;
+    int listsize;
+} SqList;
+
+int insert(SqList &L, ElemType x);
+
+int main() {
+    SqList L;
+    ElemType x;
+    int i;
+    L.elem = (ElemType *) malloc(sizeof(ElemType) * LIST_INIT_SIZE);
+    L.length = 0;
+    L.listsize = LIST_INIT_SIZE;
+    scanf("%d", &x);
+    while (x) {   //0用来判定是否推出创建链表
+        L.elem[L.length++] = x;
+        scanf("%d", &x);
+    }
+    scanf("%d", &x);
+    insert(L, x);
+    for (i = 0; i < L.length; i++)
+        printf("%8d", L.elem[i]);
+    if (L.length > L.listsize) printf("\n程序未处理溢出");
+
+    return 0;
+}
+
+int insert(SqList &L, ElemType x) {
+/**********begin**********/
+    int i=0;
+    if(L.length==0)
+        L.elem[i]=x;
+    else{
+        for(i=0;i<L.length;i++) {
+                if (x<L.elem[i]&&L.elem[0]<L.elem[1]){
+                    for (int j = L.length; j > i; j--)
+                        L.elem[j] = L.elem[j - 1];
+                    L.elem[i] = x;
+                    break;
+                }
+                else if(x>L.elem[i]&&L.elem[0]>L.elem[1]){
+                    for (int j = L.length; j > i; j--)
+                        L.elem[j] = L.elem[j - 1];
+                    L.elem[i] = x;
+                    break;
+                }
+                else L.elem[L.length]=x;
+            }
+        }
+    L.length++;
+/**********end**********/
+}
