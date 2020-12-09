@@ -1,32 +1,35 @@
 目  录
-1 基于顺序存储结构的线性表实现	2
-1.1 问题描述	2
-1.2 系统设计	3
-1.3 系统实现	4
-1.4 系统测试	15
-1.5 实验小结	15
-2 基于链式存储结构的线性表实现	16
-2.1 问题描述	16
-2.2 系统设计	17
-2.3 系统实现	18
-2.4 系统测试	30
-2.5 实验小结	45
-3 基于二叉链表的二叉树实现	46
-3.1 问题描述	47
-3.2 系统设计	48
-3.3 系统实现	50
-3.4 系统测试	64
-3.5 实验小结	76
-4 基于二叉链表的二叉树实现	2
-4.1 问题描述	2
-4.2 系统设计	2
-4.3 系统实现	2
-4.4 实验小结	2
-参考文献	2
-附录A 基于顺序存储结构线性表实现的源程序	2
-附录B 基于链式存储结构线性表实现的源程序	2
-附录C 基于二叉链表二叉树实现的源程序	2
-附录D 基于邻接表图实现的源程序	2
+1 基于顺序存储结构的线性表实现	3
+1.1 问题描述	3
+1.2 系统设计	5
+1.3 系统实现	6
+1.4 系统测试	13
+1.5 实验小结	18
+2 基于链式存储结构的线性表实现	19
+2.1 问题描述	19
+2.2 系统设计	20
+2.3 系统实现	21
+2.4 系统测试	33
+2.5 实验小结	48
+3 基于二叉链表的二叉树实现	49
+3.1 问题描述	49
+3.2 系统设计	51
+3.3 系统实现	53
+3.4 系统测试	67
+3.5 实验小结	80
+4 基于邻接表的图实现	81
+4.1 问题描述	81
+4.2 系统设计	83
+4.3 系统实现	84
+4.4 系统测试	98
+4.5 实验小结	110
+参考文献	111
+附录A 基于顺序存储结构线性表实现的源程序	112
+附录B 基于链式存储结构线性表实现的源程序	127
+附录C 基于二叉链表二叉树实现的源程序	144
+附录D 基于邻接表图实现的源程序	167
+
+ 
 
 1 基于顺序存储结构的线性表实现
 1.1 问题描述
@@ -51,16 +54,17 @@
 演示系统可选择实现线性表的文件形式保存。其中，①需要设计文件数据记录格式，以高效保存线性表数据逻辑结构(D,{R})的完整信息；②需要设计线性表文件保存和加载操作合理模式。附录B提供了文件存取的参考方法。
 演示系统可选择实现多个线性表管理。
 演示系统的源程序应按照代码规范增加注释和排版，目标程序务必是可以独立于IDE运行的EXE文件。
+ 
 1.2 系统设计
 结合单线性表和多线性表的操作之间的关系设计出演示系统的交互，首先创建一个包含多个线性表的结构体Lists，可以包含多个有名字标志的线性表以便进行选中指定线性表进行基本操作，系统设计如图1-1所示
   
 图1-1-1系统设计图
-
+ 
 1.3 系统实现
 1.3.1 主函数部分
 由于要实现构造出一个具有菜单功能的功能演示系统，在这其中要在主程序中完成函数的调用所需实参值的准备和函数执行结果的显示，并给出适当的操作提示显示。所以在主函数部分要打印出相应的菜单界面，并且使用system("cls");函数在执行完一次功能之后使界面清空，使界面显得干净整洁，方便操作。同时为了实现选择对应功能来进行相应的操作，采用switch-case语句完成函数选择以完成相应的操作。
 此外在具体功能的实现方面，由于要进行单线性表的操作，以及多线性表的管理，要在主函数中声明单顺序表SqList L，多顺序表表 LISTS Lists和储存单顺序表名字的字符数组char name[30]
-1.3.1	功能函数部分
+1.3.2功能函数部分
 1)	添加线性表：
 添加多线性表是初始化一个线性表的延伸，因为在次函数中使用到了单个线性表和多线性表的初始化操作，单线性表加入到多线性表的操作。首先请求用户说明要新增的线性表的个数，接着请求用户输入这些线性表的名字和其储存的数据。
  
@@ -98,45 +102,73 @@
 执行对应名字的线性表的循环查找匹配操作，如果匹配成功，就返回线性表在多线性表中的位置，如果循环执行完毕后仍没有返回线性表的位置，表示没有找到相应的线性表
 16)	遍历多线性表
 设置初值i=0,变化范围为多线性表的长度List.length，步长为1递增，进行循环遍历单线性表，对于每个单链表首先打印单链表的名字，然后调用ListTraverse该函数遍历单链表储存的数据。
-
+ 
 1.4 系统测试
+系统环境：Windows10 专业版
+系统版本号：20H2
+测试用IDE：Clion
+IDE版本号：2020.2.4
 1)	测试1：创建一个线性表，并添加元素1，2，3 
+表1 测试创建一个线性表
 测试用例序号	操作名称	预计结果	实际结果
 1	添加线性表a
 元素为1，2，3	输出a 1 2 3	a 1 2 3
 
  
-图1-2-1测试1结果图
+图1-4-1测试1结果图
 
-2)	测试2：再创建一个线性表，同样添加元素1，2，3
+2)	测试2：再创建一个线性表b，同样添加元素1，2，3
+表2 测试创建另外一个线性表
+测试用例	操作名称	预计结果	实际结果
+1	添加线性表b元素为1，2，3	输出b 1 2 3	b 1 2 3
+
  
-图1-2-2测试2结果图
+图1-4-2测试2结果图
 3)	测试3：删除第二个线性表的第二个元素
+表3 测试删除元素
+测试用例序号	操作名称	预计结果	实际结果
+1	删除线性表b的元素2	输出1 3	1 3
+
  
-图1-2-3测试3结果图
+图1-4-3测试3结果图
+ 
 
 4)	测试4：把第一个线性表以文件形式进行保存
- 
-图1-2-4测试4操作演示图
+表4 测试保存一个线性表
+测试用例	操作名称	预计结果	实际结果
+1	保存线性表a	文件保存线性表a中的数据	见文件保存图
 
  
-图1-2-4测试4文件保存结果图
+图1-4-4-1测试4操作演示图
+
+ 
+图1-4-4-2测试4文件保存结果图
+ 
 
 5)	测试5：删除第一个线性表
+表1 测试删除一个线性表
+测试用例	操作名称	预计结果	实际结果
+1	删除表a	输出b 1 3	输出b 1 3
+
  
-图2-6测试5结果图
+图1-4-5测试5结果图
 
 6)	测试6：添加一个新的空线性表，并将读取刚刚保存的文件的内容载入此线性表中，并遍历多线性表查看加载的结果是否正确
- 
-图1-2-7测试6添加空线性表结果图
+表1 测试创建一个线性表
+测试用例	操作名称	预计结果	实际结果
+1	添加空线性表c
+加载之间保存的文件	输出c 1 2 3	输出c 1 2 3
 
  
-图1-2-8测试6加载线性表c结果图
+图1-4-6-1测试6添加空线性表结果图
+
  
-图1-2-9测试6遍历多线性表结果图
+图1-4-6-2测试6加载线性表c结果图
+ 
+图1-4-6-3测试6遍历多线性表结果图
 1.5 实验小结
 本次实验的主要任务就是在线性表的顺序表示和实现下完成线性表的首相数据类型中的基本操作，包括线性表的初始化，销毁一个线性表，清空一个线性表，判断一个线性表是否为空，求一个线性表的长度，获取线性表中的某个元素，获取线性表中某一个元素的位置，获取线性表中某一个元素的前驱和后继，向线性表中插入一个元素，向线性表中删除一个元素，这些基本操作还可以相互组合实现一些更加复杂的操作，在本次实验中做重要的是做到多个线性表的管理，和线性表的文件保存和加载以及怎样如何设计出合适的管理方式，这就要求到了要设计出一种新的结构体,在这个结构体中，可以临时储存的单线性表，并对相应的线性表命名。通过这次实验的训练加深了我对线性表的概念基本运算的理解，较为熟练掌握线性表的逻辑结构与物理结构的关系，在物理结构采用顺序表的情况下，较为熟练的掌握线性表的基本元素运算的实现。
-
+本次实验作为本次实验课的开头，对之后的实验起到了至关重要的作用，是一个开头，是之后实验的模板，因为不管数据结构如何改变，都是为了能够在满足需求的基础上完成对数据的管理，看了整篇数据结构实验之后，我发现每个实验的框架都有一定的联系，是可以相互对照参考并加以修改的，因此第一次实验虽然比较简单，但是它同样也不简单，好好完成它，可以为之后的实验减轻很多负担。
  
 2 基于链式存储结构的线性表实现
 2.1 问题描述
@@ -198,7 +230,7 @@ c）多线性表管理部分：
 此外在具体功能的实现方面，由于要进行单线性表的操作，以及多线性表的管理，要在主函数中声明单链表LinkList L，多链表结构体 LISTS Lists和储存单顺序表名字的字符数组char name[30]，上述完成准备工作
 2.3.3功能函数部分
 1)	添加线性表：
-添加多线性表是初始化一个线性表的延伸，因为在此函数中使用到了单个线性表和多线性表的初始化操作，单线性表加入到多线性表的操作。首先请求用户说明要新增的线性表的个数，接着请求用户输入这些线性表的名字，借助AddList函数在多线性表结构中添加对应名字的线性表，随后请求用户输入要在该线性表中储存的数据，如果用户想要创造空表的话，不添加元素即可。所以，在该操作中，对线性表实现初始化的一系列操作后，该线性表即自动被添加到多线性表管理结构中。
+添加多线性表是初始化一个线性表的延伸，因为在此函数中使用到了单个线性表和多线性表的初始化操作，单线性表加入到多线性表的操作。首先用户输入要新增的线性表的个数，接着请求用户输入这些线性表的名字，借助AddList函数在多线性表结构中添加对应名字的线性表，随后请求用户输入要在该线性表中储存的数据，如果用户想要创造空表的话，不添加元素即可。在该操作中，对线性表实现初始化的一系列操作后，该线性表即自动被添加到多线性表管理结构中。
  
 2)	清空线性表
 首先请求用户输入要清空的线性表的名字，判断要清空的线性表是否存在，如果线性表存在则执行清空操作：
@@ -1001,6 +1033,7 @@ c
  
 图2-4-16-1 测试16例1的运行结果图
 
+ 
 
 3.5 实验小结
 本次实验的主要任务就是在二叉树的链式存储表示和实现下完成二叉树的数据类型中的基本操作，包括二叉树的初始化，销毁一个二叉树，清空一个二叉树，判断一个二叉树是否为空，求一个二叉树的深度，获取二叉树中某一个节点的位置，获取二叉树中某一个节点的兄弟节点，向二叉树中插入一个二叉树，向二叉树中删除一个节点，对二叉树中的某个节点进行重新赋值，这些基本操作还可以相互组合实现一些更加复杂的操作，虽然此次实验对多树管理的要求并不高，因为经过前两次的训练之后，以及实验要求的用顺序表的方式来进行多表管理，应该使用的比较熟练了，而二叉树的的文件保存和加载重要的是在于如何读取文件后以合适的方式再次创建二叉树，这里我采用了讲读取的二叉树节点信息存在数组中，然后再次使用二叉树的创建函数完成对二叉树从文件中加载出来，而不是采用边读取边创建的方式。
@@ -1009,16 +1042,371 @@ c
  
 4 基于邻接表的图实现
 4.1 问题描述
+采用邻接表作为图的物理结构，实现图的基本运算，可任选无向图、有向图、无向网和有向网这四种图中的一种实现，本次实验选择的是实现无向图，其中ElemType为数据元素的类型名，具体含义可自行定义，但要求顶点类型为结构型，至少包含二个部分，一个是能唯一标识一个顶点的关键字，类型名为KeyType，另一个是其它部分，类型名为char。
+要求构造一个具有菜单的功能演示系统。其中，在主程序中完成函数调用所需实参值的准备和函数执行结果的显示，并给出适当的操作提示显示。
+演示系统可选择实现图的文件形式保存。其中，①需要设计文件数据记录格式，以高效保存图的数据逻辑结构(D,{R})的完整信息；②需要设计图文件保存和加载操作合理模式。
+演示系统可选择实现多个图管理。
+演示系统的源程序应按照代码规范增加注释和排版，目标程序务必是可以独立于IDE运行的EXE文件。
+4.1.1 无向图的基本操作定义
+依据最小完备性和常用性相结合的原则，以函数形式定义了创建图、销毁图、查找顶点、获得顶点值和顶点赋值等12种基本运算。具体运算功能定义和说明如下。具体运算功能定义如下。
+⑴	创建图：函数名称是CreateCraph(G,V,VR)；初始条件是V是图的顶点集，VR是图的关系集；操作结果是按V和VR的定义构造图G。
+注：①要求图G中顶点关键字具有唯一性。后面各操作的实现，也都要满足一个图中关键字的唯一性，不再赘述；② V和VR对应的是图的逻辑定义形式，比如V为顶点序列，VR为关键字对的序列。不能将邻接矩阵等物理结构来代替V和VR。
+⑵销毁图：函数名称是DestroyGraph(G)；初始条件图G已存在；操作结果是销毁图G。
+(3)查找顶点：函数名称是LocateVex(G,u)；初始条件是图G存在，u是和G中顶点关键字类型相同的给定值；操作结果是若u在图G中存在，返回关键字为u的顶点位置序号（简称位序），否则返回其它表示“不存在”的信息。
+⑷顶点赋值：函数名称是PutVex (G,u,value)；初始条件是图G存在，u是和G中顶点关键字类型相同的给定值；操作结果是对关键字为u的顶点赋值value。
+⑸获得第一邻接点：函数名称是FirstAdjVex(G, u)；初始条件是图G存在，u是G中顶点的位序；操作结果是返回u对应顶点的第一个邻接顶点位序，如果u的顶点没有邻接顶点，否则返回其它表示“不存在”的信息。
+⑹获得下一邻接点：函数名称是NextAdjVex(G, v, w)；初始条件是图G存在，v和w是G中两个顶点的位序，v对应G的一个顶点,w对应v的邻接顶点；操作结果是返回v的（相对于w）下一个邻接顶点的位序，如果w是最后一个邻接顶点，返回其它表示“不存在”的信息。
+⑺插入顶点：函数名称是InsertVex(G,v)；初始条件是图G存在，v和G中的顶点具有相同特征；操作结果是在图G中增加新顶点v。（在这里也保持顶点关键字的唯一性）
+⑻删除顶点：函数名称是DeleteVex(G,v)；初始条件是图G存在，v是和G中顶点关键字类型相同的给定值；操作结果是在图G中删除关键字v对应的顶点以及相关的弧。
+⑼插入弧：函数名称是InsertArc(G,v,w)；初始条件是图G存在，v、w是和G中顶点关键字类型相同的给定值；操作结果是在图G中增加弧<v,w>，如果图G是无向图，还需要增加<w,v>。
+⑽删除弧：函数名称是DeleteArc(G,v,w)；初始条件是图G存在，v、w是和G中顶点关键字类型相同的给定值；操作结果是在图G中删除弧<v,w>，如果图G是无向图，还需要删除<w,v>。
+⑾深度优先搜索遍历：函数名称是DFSTraverse(G,visit())；初始条件是图G存在；操作结果是图G进行深度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次。
+⑿广度优先搜索遍历：函数名称是BFSTraverse(G,visit())；初始条件是图G存在；操作结果是图G进行广度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次。
 4.2 系统设计
+结合单二叉树和多二叉树的操作之间的关系设计出演示系统的交互，首先创建一个包含多个线性表的结构体Graphs，作为各个功能操作的主体，在这个结构体中，可以包含多个有以名字标志的二叉树以便进行选中指定二叉树进行相应的基本操作，此多树结构设计如图3-1-1所示：
+ 
+图4-1-1多图管理的物理结构示意图
+系统设计图如4-1-2所示：
+ 
+图3-1-2系统设计图
 4.3 系统实现
+4.3.1一些在主函数前的准备
+a)	函数返回值宏设定：
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+b)	图储存类型和相关函数返回值类型，以及图的枚举类型设定：
+typedef int status;
+typedef int KeyType;
+typedef enum {UNKOWN,DG,DN,UDG,UDN} GraphKind;
+c)	BFS遍历中所使用到的标记数组和队列结构的定义：
+typedef int Boolean;
+Boolean visited[MAX_VERTEX_NUM];
+typedef struct{
+    int data[MAX_VERTEX_NUM];
+    int front;
+    int rear;
+}Queue;
+d)	图和多图相关存储结构的定义：
+typedef struct {
+    KeyType  key;
+    char others[20];
+} VertexType; //顶点类型定义
+
+typedef struct ArcNode {         //表结点类型定义
+    int adjvex;              //顶点位置编号
+    struct ArcNode  *nextarc;       //下一个表结点指针
+} ArcNode;
+
+typedef struct VNode{                //头结点及其数组类型定义
+    VertexType data;           //顶点信息
+    ArcNode *firstarc;           //指向第一条弧
+} VNode,AdjList[MAX_VERTEX_NUM];
+
+typedef  struct {  //邻接表的类型定义
+    AdjList vertices;          //头结点数组
+    int vexnum,arcnum;         //顶点数、弧数
+    GraphKind  kind;        //图的类型
+} ALGraph;
+
+typedef struct {
+    struct {
+        char name[30];
+        ALGraph graph;
+    } elem[100];
+    int length;
+    int listsize;
+}Graphs;
+4.3.2主函数部分
+⑴	演示系统的打印：
+由于要实现构造出一个具有菜单功能的功能演示系统，在这其中要在主程序中完成函数的调用所需实参值的准备和函数执行结果的显示，并给出适当的操作提示显示。所以在主函数部分要打印出相应的菜单界面，并且使用system("cls");函数在执行完一次功能之后使界面清空，使界面显得干净整洁，方便进行下一次操作。
+⑵	演示系统的功能选择：
+同时为了实现选择对应功能来进行相应的操作，采用switch-case语句完成选择特定的函数功能实现部分以完成相应的操作。
+⑶	多图管理部分：
+此外在具体功能的实现方面，由于要进行单图的操作，以及多图的管理，要在主函数中声明单图ALGraph G，多图结构体 Graphs ghs，和储存每个图的字符数组char name[30]，以及后面的文件存储地址的上述完成准备工作。
+4.3.3功能函数部分
+1)	添加图
+添加图是初始化一个图的延伸，因为在此函数中使用到了单图的初始化操作，单图加入到多图的操作。首先请求用户说明要新增的图的个数，接着请求用户输入这些图的名字，借助AddGraphs函数在多图结构中添加对应名字的图，随后请求用户输入图中的顶点信息，要求带有关键字和字符，以-1 nil结束，接着输入结点之间的关系，以-1，-1结尾。在该操作中，对图实现初始化的一系列操作后，该图即自动被添加到多图管理结构中。
+ 
+ 
+2)	销毁图
+首先请求用户输入要销毁的图的名字，判断要销毁的图是否存在，如果图存在则执行销毁操作：
+-	先循环释放邻接表中的弧：
+ 
+-	图的顶点数，边数置为0
+-	图的类型置为UNKOWN
+-	根节点T=NULL
+-	释放图的名字
+-	循环将销毁的图后面的图前移
+ 
+3)	查找顶点
+首先请求用户输入要进行获取元素操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	循环比对顶点的key是否与给定的值相等，如果相等返回序号pos
+-	如果循环结束仍然找不到，返回-1
+ 
+4)	顶点赋值
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	首先判断位置是否合法
+ 
+-	如果位置合法则进行赋值操作
+-	先定位修改的key的位置pos
+-	进行赋值操作G.vertices[pos].data = value;
+ 
+5)	获得第一邻接点
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	判断相应关键字的序号是否存在：
+ 
+-	判断序号为pos的顶点是否有第一邻接点，如果没有返回-1
+-	如果存在第一邻接点，返回第一邻接点的关键字
+ 
+6)	获得下一邻接点
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	寻找v，如果找不到返回-1
+-	寻找w，如果找不到，返回-1
+-	如果找到w，返回w的位序
+ 
+7)	插入顶点
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	判断插入位置是否合法以及插入之后的关键字是否重复
+-	如果都合法则进行插入操作
+-	图的顶点数加1
+ 
+8)	删除顶点
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	判断删除的关键字是否合法以及图的顶点数是否为1
+-	如果条件符合删除条件则执行删除操作
+-	首先删除相应顶点的行邻接表，图的节点数减一
+-	删除结点之后，将删除之后邻接表的位序上移一位
+-	遍历删除之后的邻接表，遇到删除节点的位序就删除，遇到非删除结点的位序就减一
+ 
+9)	插入弧
+首先请求用户输入要进行相应操作的图的名字，判断此图是否存在，如果存在则进行如下操作：
+-	判断插入弧的位置是否合法
+-	在v的后面寻找w，如果有w，则弧已经存在，返回ERROR
+-	如没有w，执行插入操作：在v的后面头插w，在w的后面插入v
+-	图的弧数加一
+ 
+ 
+ 
+10)	删除弧
+首先请求用户输入要进行后序遍历操作的图的名字，判断此图是否存在，如果存在则进行以下操作：
+-	判断弧的两个端点是否存在，以及弧是否存在，如果存在进行删除胡弧的操作
+-	在v的后面查找w，删除弧
+-	在w的后面寻找v，删除弧
+11)	深度优先遍历
+首先请求用户输入要进行后序遍历操作的二叉树的名字，判断此二叉树是否存在，如果存在则进行以下操作：
+-	首先初始化标记数组，赋值false，表示所有顶点都没有被遍历过
+-	从序号为0的顶点开始遍历，遍历该邻接点之后的顶点，将遍历之后的顶点的序号对应的数组赋值为true，表示遍历过了
+-	接下来遍历其他顶点与上述内容相似
+-	遍历之后返回OK
+12)	广度优先遍历
+首先请求用户输入要进行后序遍历操作的图的名字，判断图是否存在，如果存在则进行以下操作：
+-	首先初始化标记数组，赋值false，表示所有顶点都没有被遍历过
+-	初始化队列Q
+-	从序号为0的顶点开始遍历，将遍历之后的顶点的序号对应的数组赋值为true，表示遍历过了，将遍历之后的点入栈，如果栈不为空，栈顶顶点出栈，同时遍历与它所有相关的弧的列另一个顶点，并将它们入栈，遍历之后的需要把相应序号的数组记为true
+-	接下来遍历其他顶点与上述内容相似
+-	遍历之后返回OK
+13)	保存图
+首先请求用户输入要进行保存操作的图的名字，判断此图是否存在，如果存在则进行保存图写入指定文件地址的操作
+14)	加载图
+首先请求用户输入要进行加载操作的二叉树的名字，判断此二叉树是否存在，如果存在则进行将指定地址的文件加载出来写入图的操作
+15)	遍历图
+首先请求用户输入要进行遍历操作的图的名字，判断此图是否存在，如果存在则进行遍历图的邻接表的操作。
+16)	遍历多图
+循环对多图中的每一个图进行遍历操作。
+ 
 4.4 系统测试
+系统环境：Windows10 专业版
+系统版本号：20H2
+测试用IDE：Clion
+IDE版本号：2020.2.4
+
+测试1：创建图
+表1：测试创建图
+测试序号	测试内容	预计输出	实际输出
+1	创建一个图	创建成功	见输出结果图示
+（注：创见的图的内容为：1 A 2 B 3 C 4 D 8 F 6 E -1 nil 1 2 1 6 1 3 3 4 6 4 2 4 2 8 4 8 -1 -10）
+ 
+图4-4-1-1 测试1运行结果图
+
+测试2：销毁图
+表2：测试销毁图
+测试序号	测试内容	预计输出	实际输出
+1	销毁上一测试
+创建的图	销毁成功	 
+（销毁的结果可以通过查看遍历多图的操作查看）
+ 
+图4-4-2-1 测试1运行图
+ 
+图4-4-2-2 测试1结果检验图
+
+测试3：查找顶点
+表3：测试查找顶点
+（测试用图为测试1创建的图a）
+测试序号	测试内容	预计输出	实际输出
+1	查找关键字为1的顶点的位置	查找成功，0	 
+2	查找关键字为5的顶点的位置	查找失败	 
+3	查找关键字为8的顶点的位置	查找成功	 
+
+ 
+图4-4-3-1 测试3用例1运行图
+ 
+图4-4-3-2 测试3用例2运行图
+ 
+图4-4-3-3 测试3用例3运行图
+
+测试4：顶点赋值
+表4：测试顶点赋值
+（测试用图为测试1创建的图并插入顶点9 G和10 O）
+测试序号	测试内容	预计输出	实际输出
+1	赋值6 10 E	赋值操作失败	 
+2	赋值6 10 O	修改成功	 
+
+ 
+图4-4-4-1 测试4用例1运行图
+ 
+图4-4-4-2 测试4用例2运行图
+
+
+测试5：获得第一邻接点
+表5：测试获取第一邻接点
+（测试用图为测试1创建的图a）
+测试序号	测试内容	预计输出	实际输出
+1	获得2的第一邻接点	8 F	 
+
+ 
+图4-4-5-1 测试5运行图
+
+测试6：获得下一邻接点
+表6：测试获得下一邻接点
+（测试用图为测试1创建的图a）
+测试序号	测试内容	预计输出	实际输出
+1	获得2 8的下一邻接点	查找成功 4 D	 
+
+ 
+图4-4-6-1 测试6运行图
+
+测试7：插入顶点
+表7：测试插入顶点
+（测试用图为测试1创建的图a）
+测试序号	测试内容	预计输出	实际输出
+1	插入顶点9 G	插入顶点成功	 
+2	插入顶点10 O	插入顶点成功	 
+
+ 
+图4-4-7-1 测试7用例1运行图
+ 
+图4-4-7-2 测试7用例2运行图
+
+
+测试8：删除顶点
+表8：测试删除顶点
+（测试用图为测试9修改之后的图）
+测试序号	测试内容	预计输出	实际输出
+1	删除关键字为2的顶点	删除成功	 
+
+ 
+图4-4-8-1 测试8运行图
+
+测试9：插入弧
+表9：测试插入弧
+（测试用图为测试4修改之后的图）
+测试序号	测试内容	预计输出	实际输出
+1	插入弧8 9	插入成功	 
+2	插入弧 4 10	插入成功	 
+3	插入弧3 10	插入成功	 
+
+ 
+图4-4-9-1 测试9用例1运行图
+ 
+图4-4-9-2 测试9用例2运行图
+ 
+图4-4-9-3 测试9用例3运行图
+
+
+
+测试10：删除弧
+表10：测试删除弧
+（测试用图为测试8修改之后的图）
+测试序号	测试内容	预计输出	实际输出
+1	删除弧4 8	删除成功	 
+
+ 
+图4-4-10-1 测试10运行图
+
+测试11：DFS
+表11：测试DFS
+（测试用图为测试1创建的图a）
+测试序号	测试内容	预计输出	实际输出
+1	深度遍历测试图两遍	1 A 3 C 4 D 8 F 2 B 6 E	 
+
+ 
+图4-4-11-1 测试11运行图
+
+测试12；BFS
+表12：测试BFS
+（测试用图为测试10修改之后的图）
+测试序号	测试内容	预计输出	实际输出
+1	广度遍历测试图	1 A 3 C 11 E 10 O 4 D 8 F 9 G	 
+
+ 
+图4-4-12-1 测试12运行图
+ 
+
+测试13：保存图
+表13：测试保存图
+（测试用图为测试10修改之后的图）
+测试序号	测试内容	预计输出	实际输出
+1	保存测试图至C:\list.dat	保存成功	 
+
+ 
+图4-4-13-1 测试13运行图
+ 
+ 
+图4-4-13-2 测试13文件保存图
+
+测试14：加载图
+表14：测试加载图
+测试序号	测试内容	预计输出	实际输出
+1	加载测试13保存的内容	加载成功	
+
+ 
+图4-4-14-1 测试14运行图
+
+
+测试15：遍历图
+表15：测试遍历图
+测试序号	测试内容	预计输出	实际输出
+1	遍历测试14加载之后的图	遍历结果符合实际	查看运行结果图
+
+ 
+图4-4-5-1 测试15运行结果图
+
+
+测试16：遍历多图
+表16：测试遍历多图
+（在测试15用图的基础上添加一个新图：
+5 线性表 8 集合 7 二叉树 6 无向图 -1 nil 5 6 5 7 6 7 7 8 -1 -1）
+测试序号	测试内容	预计输出	实际输出
+1	遍历供测试的多图	遍历结果符合实际	查看运行结果图
+
+ 
+图4-4-16-1 测试16运行图
+ 
+
 4.5 实验小结
+本次实验的主要任务就是在图的邻接表存储表示和实现下完成图的数据类型中的基本操作，包括图的的初始化与创建，销毁一个图，查找图的顶点，顶点赋值，获得某个顶点的第一邻接点，获得某个顶点的下一邻接点，在图中插入一个顶点，删除图中的一个顶点，在图中插入弧，删除弧，对图分别进行深度优先遍历以及广度优先遍历，这些基本操作还可以相互组合实现一些更加复杂的操作，对于多图管理的实现，仍可以用顺序表的方式来进行多图管理。本次实验中较为困难的就是删除节点操作，虽然其本身并没有太大的难度，但是操作较为繁琐。接着就是DFS和BFS遍历操作，分别要求对栈和队列的相关操作掌握较为熟练并能够灵活使用。
+本次实验的完成意味着本次实验课的完结，本门课程经过了运动会的一次中断和考试周的延后，最终还是顺利结课，经过本次课程的学习，我学的很多，不仅仅是对课上的内容的实践与巩固，但是我也很清楚，数据结构学习的知识光靠实验课上要求完成的内容是远远达不到的，所以在日后的学习中要对课上学习到的而在是实验中并没有要求的多加实践，达到实验要求的真正的要求的高度。
  
 参考文献
 [1] 严蔚敏等. 数据结构(C语言版). 清华大学出版社
 [2] Larry Nyhoff. ADTs, Data Structures, and Problem Solving with C++.  Second Edition, Calvin College, 2005 
 [3] 殷立峰. Qt C++跨平台图形界面程序设计基础. 清华大学出版社,2014:192～197
 [4] 严蔚敏等.数据结构题集(C语言版). 清华大学出版社
+[5] 程杰 大话数据结构 清华大学出版社
  
 附录A 基于顺序存储结构线性表实现的源程序
 /* Linear Table On Sequence Structure */
@@ -3315,5 +3703,1018 @@ status DestroyBiTree(BiTree &T) {
 }
  
 附录D 基于邻接表图实现的源程序
- 
+主函数：
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cctype>
+
+#include "def.h"
+#include "stu.h"
+
+int main() {
+    /*变量定义*/
+    Graphs ghs;  //多图结构体的声明
+    ALGraph G;   //单个图的声明
+    int op = 1;  //功能选择的声明
+    int i, j, k;  //循环变量
+    int n;  //图的个数
+    int ukey, vkey, wkey; //要进行查找的关键字
+    int s; //函数返回状态值
+    char name[30];  //图的名字
+    char FileName[100]; //文件保存地址
+    VertexType value; //新的赋值顶点
+    //多图的初始化
+    for (i = 0; i <= 20; i++) {
+        ghs.elem[i].graph.kind = UDG;
+    }//全都定义为无向图
+    ghs.length = 0;
+    while (op) {
+        system("cls");    //用于清屏
+        printf("\n\n");
+        printf("\t\t      Menu for Undirected Graph On Chain Structure \n");
+        printf("\t******************************************************************************\n");
+        printf("\t\t\t1.  创建图 \t\t\t2.  销毁图\n");
+        printf("\t\t\t3.  查找顶点 \t\t\t4. 顶点赋值\n");
+        printf("\t\t\t5.  获得第一邻接点\t\t 6.  获得下一邻接点\n");
+        printf("\t\t\t7.  插入顶点 \t\t\t8.  删除顶点\n");
+        printf("\t\t\t9.  插入弧  \t\t       10. 删除弧\n");
+        printf("\t\t\t11. 深度优先搜索遍历\t\t 12. 广度优先搜索遍历\n");
+        printf("\t\t\t13. 保存图 \t\t       14. 加载图\n");
+        printf("\t\t\t15. 遍历图\t\t       16.  遍历多图\n");
+        printf("\t\t\t\t\t**0. 退出**\n");
+        printf("\t******************************************************************************\n");
+        printf("\t\t\t请选择你的操作[0-16]: ");
+        scanf("%d", &op);
+        switch (op) {
+            case 1:  //添加图
+                printf("当前操作：添加图\n");
+                printf("请输入要添加的图的个数");
+                scanf("%d", &n);
+                while (n--) {
+                    printf("请输入要添加的图的名称\n");
+                    scanf("%s", name);
+                    AddGraphs(ghs, name);  //增加图
+                    printf("请输入图的顶点和弧的相关信息：\n");
+                    VertexType V[30];  //顶点的信息
+                    KeyType VR[100][2]; //弧的信息
+                    i = 0;
+                    do {
+                        scanf("%d%s", &V[i].key, V[i].others);
+                    } while (V[i++].key != -1);
+                    i = 0;
+                    do {
+                        scanf("%d%d", &VR[i][0], &VR[i][1]);
+                    } while (VR[i++][0] != -1);
+                    if (CreateGraph(ghs.elem[ghs.length - 1].graph, V, VR) == ERROR){
+                        free(ghs.elem[ghs.length-1].name);
+                        ghs.length--;
+                        printf("输入数据错，无法创建\n");
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                //遍历多线性表
+                GraphsTraverse(ghs);
+                printf("\n");
+                getchar();
+                getchar();
+                break;
+            case 2:  //销毁图
+                printf("当前操作：销毁图\n");
+                printf("请输入要销毁的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        DestroyGraph(ghs.elem[i].graph);
+                        free(ghs.elem[i].name);
+                        ghs.length--;
+                        while (i < ghs.length) {
+                            ghs.elem[i] = ghs.elem[i + 1];
+                            i++;
+                        }
+                        printf("销毁成功，可以遍历多图查看销毁结果\n");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 3: //查找顶点
+                printf("当前操作：查找顶点\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入要查找的关键字：");
+                        scanf("%d", &ukey);
+                        s = LocateVex(ghs.elem[i].graph, ukey);
+                        if (s != -1)
+                            printf("查找成功：%d %s", s, ghs.elem[i].graph.vertices[s].data.others);
+                        else
+                            printf("查找失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 4:
+                printf("当前操作：顶点赋值\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入重新赋值的顶点的关键字和赋值后的信息：");
+                        scanf("%d%d%s", &ukey, &value.key, value.others);
+                        s = PutVex(ghs.elem[i].graph, ukey, value);
+                        if (s == OK){
+                            printf("修改成功！\n");
+                            Traverse(ghs.elem[i].graph);
+                        }
+                        else
+                            printf("赋值操作失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 5:
+                printf("当前操作：获得第一邻接点\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行操作的顶点的关键字：");
+                        scanf("%d", &ukey);
+                        s = FirstAdjVex(ghs.elem[i].graph, ukey);
+                        if (s != -1)
+                            printf("查找成功：%d %s", ghs.elem[i].graph.vertices[s].data.key, ghs.elem[i].graph.vertices[s].data.others);
+                        else
+                            printf("查找失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 6:
+                printf("当前操作：获得下一邻接点\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行操作的顶点的关键字：");
+                        scanf("%d%d", &vkey, &wkey);
+                        s = NextAdjVex(ghs.elem[i].graph, vkey, wkey);
+                        if (s != -1)
+                            printf("查找成功：%d %s", ghs.elem[i].graph.vertices[s].data.key, ghs.elem[i].graph.vertices[s].data.others);
+                        else
+                            printf("无下一邻接顶点");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 7:
+                printf("当前操作：插入顶点\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行操作的顶点的信息：");
+                        scanf("%d%s", &value.key, value.others);
+                        s = InsertVex(ghs.elem[i].graph, value);
+                        if (s != -1)
+                        {
+                            printf("插入顶点成功\n");
+                            Traverse(ghs.elem[i].graph);
+                        }
+                        else
+                            printf("插入操作失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 8:
+                printf("当前操作：删除顶点\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行删除操作的顶点的关键字：");
+                        scanf("%d", &vkey);
+                        s = DeleteVex(ghs.elem[i].graph, vkey);
+                        if (s == OK){
+                            printf("删除顶点成功\n");
+                            Traverse(ghs.elem[i].graph);
+                        }
+                        else
+                            printf("删除操作失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 9:
+                printf("当前操作：插入弧\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行操作的顶点的信息：");
+                        scanf("%d%d", &vkey, &wkey);
+                        s = InsertArc(ghs.elem[i].graph, vkey,wkey);
+                        if (s == OK)
+                        {
+                            printf("插入弧成功\n");
+                            Traverse(ghs.elem[i].graph);
+                        }
+                        else
+                            printf("插入弧操作失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 10:
+                printf("当前操作：删除弧\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入进行删除操作的顶点的关键字：");
+                        scanf("%d%d", &vkey,&wkey);
+                        s = DeleteArc(ghs.elem[i].graph, vkey,wkey);
+                        if (s == OK){
+                            printf("删除弧成功\n");
+                            Traverse(ghs.elem[i].graph);
+                        }
+                        else
+                            printf("删除操作失败");
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 11:
+                printf("当前操作：深度优先遍历\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        DFSTraverse(ghs.elem[i].graph,visit);
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 12:
+                printf("当前操作：广度优先遍历\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        BFSTraverse(ghs.elem[i].graph,visit);
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 13:
+                printf("当前操作：保存图\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入文件保存的地址\n");
+                        scanf("%s",FileName);
+                        s=SaveGraph(ghs.elem[i].graph,FileName);
+                        if(s==OK){
+                            printf("保存成功");
+                            DestroyGraph(ghs.elem[i].graph);
+                        }
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 14:
+                printf("当前操作：加载图\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        printf("请输入文件读取的地址\n");
+                        scanf("%s",FileName);
+                        LoadGraph(ghs.elem[i].graph,FileName);
+                        Traverse(ghs.elem[i].graph);
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 15:
+                printf("当前操作：遍历图\n");
+                printf("请输入要进行操作的图的名字:");
+                scanf("%s", name);
+                //匹配名字
+                for (i = 0; i < ghs.length; i++) {
+                    j = strcmp(ghs.elem[i].name, name);
+                    if (j == 0) {
+                        Traverse(ghs.elem[i].graph);
+                        break;
+                    }
+                }
+                if (i==ghs.length) printf("未匹配到相应名字的图");
+                getchar();
+                getchar();
+                break;
+            case 16:
+                printf("当前操作：遍历多图\n");
+                GraphsTraverse(ghs);
+                getchar();
+                getchar();
+                break;
+            case 0:
+                exit(0);
+                break;
+        }
+    }
+    printf("欢迎下次在使用本系统！\n");
+    return 1;
+}
+
+头文件：
+def.h:
+
+//
+// Created by spiri on 2020/11/25.
+//
+
+#ifndef EX_4_DEF_H
+#define EX_4_DEF_H
+
+#endif //EX_4_DEF_H
+
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
+#define INFEASIBLE -1
+#define OVERFLOW -2
+#define MAX_VERTEX_NUM 20
+typedef int status;
+typedef int KeyType;
+typedef int Boolean;
+typedef enum {UNKOWN,DG,DN,UDG,UDN} GraphKind;
+Boolean visited[MAX_VERTEX_NUM];
+typedef struct {
+    KeyType  key;
+    char others[20];
+} VertexType; //顶点类型定义
+
+typedef struct ArcNode {         //表结点类型定义
+    int adjvex;              //顶点位置编号
+    struct ArcNode  *nextarc;       //下一个表结点指针
+} ArcNode;
+
+typedef struct VNode{                //头结点及其数组类型定义
+    VertexType data;           //顶点信息
+    ArcNode *firstarc;           //指向第一条弧
+} VNode,AdjList[MAX_VERTEX_NUM];
+
+typedef  struct {  //邻接表的类型定义
+    AdjList vertices;          //头结点数组
+    int vexnum,arcnum;         //顶点数、弧数
+    GraphKind  kind;        //图的类型
+} ALGraph;
+
+typedef struct{
+    int data[MAX_VERTEX_NUM];
+    int front;
+    int rear;
+}Queue;
+
+typedef struct {
+    struct {
+        char name[30];
+        ALGraph graph;
+    } elem[100];
+    int length;
+    int listsize;
+} Graphs;
+
+
+stu.h:
+//
+// Created by spiri on 2020/11/25.
+//
+
+#ifndef EX_4_STU_H
+#define EX_4_STU_H
+
+#endif //EX_4_STU_H
+
+void Traverse(ALGraph G) {
+    int i;
+    for (i = 0; i < G.vexnum; i++) {
+        ArcNode *p = G.vertices[i].firstarc;
+        printf("%d %s", G.vertices[i].data.key, G.vertices[i].data.others);
+        while (p) {
+            printf(" %d", p->adjvex);
+            p = p->nextarc;
+        }
+        printf("\n");
+    }
+}
+
+void visit(VertexType v) {
+    printf(" %d %s", v.key, v.others);
+}
+
+int LocateVex(ALGraph G, KeyType u)
+//根据u在图G中查找顶点，查找成功返回位序，否则返回-1；
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int i, pos = 0;
+    for (i = 0; i < G.vexnum; i++) {
+        if (G.vertices[i].data.key == u) {
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+    /********** End **********/
+}
+
+status AddGraphs(Graphs &ghs, char name[]) {
+    strcpy(ghs.elem[ghs.length].name, name);
+    ghs.length++;
+    return OK;
+}
+
+status CreateGraph(ALGraph &G, VertexType V[], KeyType VR[][2])
+/*根据V和VR构造图T并返回OK，如果V和VR不正确，返回ERROR
+如果有相同的关键字，返回ERROR。此题允许通过增加其它函数辅助实现本关任务*/
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    /*
+     * V--节点信息
+     * VR--节点之间的关系
+     */
+    int i = 0, k = 0, j;
+    int pos_i, pos_j;
+    int flag = 0, p = 0, q = 0;
+    int num = 0;
+    G.vexnum = 0;
+    G.arcnum = 0;
+    //匹配元素是否重复，以及元素是否合法，容量是否合法
+    do {
+        q = p;
+        while (V[++q].key != -1) {
+            if (V[p].key == V[q].key) flag = 1;
+        }
+        num++;
+    } while (V[++p].key != -1);
+    if (num > MAX_VERTEX_NUM)
+        return ERROR;
+    //建立顶点表
+    if (flag == 0) {
+        do {
+            G.vertices[i].data = V[i];
+            G.vertices[i].firstarc = NULL;
+            G.vexnum++;
+        } while (V[++i].key != -1);
+        //建立边表
+        while (VR[k][0] != -1) {
+            i = VR[k][0];
+            j = VR[k][1];
+            pos_i = LocateVex(G, i);
+            pos_j = LocateVex(G, j);
+            if (pos_i==-1||pos_j==-1) return ERROR;
+            if (!(pos_j < G.vexnum && pos_i < G.vexnum)) return ERROR;
+            ArcNode *e = NULL;
+            //建立i与j的关系
+            e = (ArcNode *) malloc(sizeof(ArcNode));
+            e->adjvex = pos_j;
+            e->nextarc = G.vertices[pos_i].firstarc;
+            G.vertices[pos_i].firstarc = e;
+            //建立j与i的关系
+            e = (ArcNode *) malloc(sizeof(ArcNode));
+            e->adjvex = pos_i;
+            e->nextarc = G.vertices[pos_j].firstarc;
+            G.vertices[pos_j].firstarc = e;
+            G.arcnum++;
+            k++;
+        }
+        return OK;
+    }
+    return ERROR;
+    /********** End **********/
+}
+
+status DestroyGraph(ALGraph &G)
+/*销毁无向图G*/
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int i;
+    VertexType *vp;
+    ArcNode *p, *q;
+    ALGraph *g = &G;
+    if (!g) return ERROR;
+    //先释放边
+    for (i = 0; i < G.vexnum; i++) {
+        p = G.vertices[i].firstarc;
+        while (p) {
+            q = p->nextarc;
+            free(p);
+            p = q;
+        }
+    }
+    //再释放顶点,图的信息,顶点数目,边数目,kind置为0
+    G.vexnum = 0;
+    G.arcnum = 0;
+    G.kind = UNKOWN;
+    return OK;
+    /********** End **********/
+}
+
+status PutVex(ALGraph &G, KeyType u, VertexType value)
+//根据u在图G中查找顶点，查找成功将该顶点值修改成value，返回OK；
+//如果查找失败或关键字不唯一，返回ERROR
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int pos,flag;
+    //判断修改位置是否存在
+    if (LocateVex(G, u) == -1) return ERROR;
+    flag=LocateVex(G, value.key);
+    //判断是否重复
+    if (u != value.key && flag != -1) return ERROR;
+    //如果合法执行赋值操作
+    //定位u
+    pos = LocateVex(G, u);
+    G.vertices[pos].data = value;
+    return OK;
+    /********** End **********/
+}
+
+int FirstAdjVex(ALGraph G, KeyType u)
+//根据u在图G中查找顶点，查找成功返回顶点u的第一邻接顶点位序，否则返回-1；
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int pos;
+    pos = LocateVex(G, u);
+    if (pos == -1) return -1;
+    if (!G.vertices[pos].firstarc) return -1;
+    return G.vertices[pos].firstarc->adjvex;
+    /********** End **********/
+}
+
+int NextAdjVex(ALGraph G, KeyType v, KeyType w)
+//根据u在图G中查找顶点，查找成功返回顶点v的邻接顶点相对于w的下一邻接顶点的位序，查找失败返回-1；
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int pos;
+    ArcNode *wp;
+    pos = LocateVex(G, v);
+    //找不到v return ERROR
+    //v的后面没有弧 返回错误信息
+    if (pos == -1) return -1;
+    if (!G.vertices[pos].firstarc) return -1;
+    //查找w
+    wp = G.vertices[pos].firstarc;
+    while (G.vertices[wp->adjvex].data.key != w) {
+        wp = wp->nextarc;
+        if (wp->nextarc == NULL) return -1;  //找不到w
+    }
+    return wp->nextarc->adjvex;
+    /********** End **********/
+}
+
+status InsertVex(ALGraph &G, VertexType v)
+//在图G中插入顶点v，成功返回OK,否则返回ERROR
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    //判断插入位置是否合法
+    if (G.vexnum >= MAX_VERTEX_NUM) return ERROR;
+    //判断插入之后是否重复
+    if (LocateVex(G, v.key) != -1) return ERROR;
+    //开始插入操作
+    G.vexnum++;
+    G.vertices[G.vexnum - 1].data = v;
+    G.vertices[G.vexnum - 1].firstarc = NULL;
+    return OK;
+    /********** End **********/
+}
+
+status DeleteVex(ALGraph &G, KeyType v)
+//在图G中删除关键字v对应的顶点以及相关的弧，成功返回OK,否则返回ERROR
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    //判断删除的关键字是否合法
+    if (LocateVex(G, v) == -1) return ERROR;
+    if (LocateVex(G, v) != -1) {
+        //删除之后仍然是图
+        if (G.vexnum == 1) return ERROR;
+        //关键字合法，执行删除操作
+        int i, pos_v;
+        ArcNode *vp, *iptr, *cur;
+        pos_v = LocateVex(G, v);
+        vp = G.vertices[pos_v].firstarc;
+        //删除vp对应的数组
+        while (vp) {
+            cur = vp;
+            vp = vp->nextarc;
+            free(cur);
+            G.arcnum--;
+        }
+        G.vexnum--;
+        for (i = pos_v; i < G.vexnum; i++)
+            G.vertices[i] = G.vertices[i + 1];  //删除之后的数组上移
+        //遍历删除之后的邻接表，遇到v删除弧，遇到非v就-1
+        for (i = 0; i < G.vexnum; i++) {
+            iptr = G.vertices[i].firstarc;
+            while (iptr) {
+                //如果等于pos_v 执行删除弧的操作
+                if (iptr->adjvex == pos_v) {
+                    if (iptr == G.vertices[i].firstarc) {
+                        //如果是第一个元素
+                        G.vertices[i].firstarc = iptr->nextarc;
+                        free(iptr);
+                        iptr = G.vertices[i].firstarc;
+                    } else {
+                        //如果不是第一个元素
+                        cur->nextarc = iptr->nextarc;
+                        free(iptr);
+                        iptr = cur->nextarc;
+                    }
+                } else {
+                    //如果大于pos_v，序号减一
+                    if (iptr->adjvex > pos_v)
+                        iptr->adjvex--;
+                    cur = iptr;
+                    iptr = iptr->nextarc;
+                }
+            }
+        }
+    }
+    return OK;
+    /********** End **********/
+}
+
+status InsertArc(ALGraph &G, KeyType v, KeyType w)
+//在图G中增加弧<v,w>，成功返回OK,否则返回ERROR
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    //首插法
+    //判断插入位置是否合法
+    int pos_v, pos_w;
+    pos_v = LocateVex(G, v);
+    pos_w = LocateVex(G, w);
+    if (pos_v == -1 || pos_w == -1) return ERROR; //弧顶点找不到
+    //如果弧已经重复 返回ERROR
+    ArcNode *vp, *wp, *cur;
+    vp = G.vertices[pos_v].firstarc;
+    wp = G.vertices[pos_w].firstarc;
+    //找v后面是否有w
+    while (vp) {
+        if (vp->adjvex == pos_w) return ERROR;
+        vp = vp->nextarc;
+    }
+    vp = G.vertices[pos_v].firstarc;
+    //如果没有w执行插入操作
+    //在v后面头插w
+    ArcNode *New_Arc1 = (ArcNode *) malloc(sizeof(ArcNode));
+    New_Arc1->adjvex = pos_w;
+    cur = vp;
+    New_Arc1->nextarc = cur;
+    G.vertices[pos_v].firstarc = New_Arc1;
+    //在w后面头插v
+    ArcNode *New_Arc2 = (ArcNode *) malloc(sizeof(ArcNode));
+    New_Arc2->adjvex = pos_v;
+    cur = wp;
+    New_Arc2->nextarc = cur;
+    G.vertices[pos_w].firstarc = New_Arc2;
+    //插入完成
+    G.arcnum++;
+    return OK;
+    /********** End **********/
+}
+
+status DeleteArc(ALGraph &G, KeyType v, KeyType w)
+//在图G中删除弧<v,w>，成功返回OK,否则返回ERROR
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int flag = 0;
+    int pos_v, pos_w;
+    pos_v = LocateVex(G, v);
+    pos_w = LocateVex(G, w);
+    if (pos_v == -1 || pos_w == -1) return ERROR; //弧顶点找不到
+    //如果弧不存在 返回ERROR
+    ArcNode *vp, *wp, *cur;
+    vp = G.vertices[pos_v].firstarc;
+    wp = G.vertices[pos_w].firstarc;
+    //找v后面是否有w 如果没有 返回ERROR
+    while (vp) {
+        if (vp->adjvex == pos_w) {
+            flag = 1;
+            break;
+        }
+        vp = vp->nextarc;
+    }
+    vp = G.vertices[pos_v].firstarc;
+    if (flag == 0) return ERROR;
+
+    //所有都合法执行删除弧的操作：
+    //在v后面删除w
+    //查找 w
+    //如果第一个就是则不适用循环
+    if (vp->adjvex == pos_w) {
+        free(vp);
+        G.vertices[pos_v].firstarc = NULL;
+    } else {
+        while (vp->nextarc->adjvex != pos_w)
+            vp = vp->nextarc;
+        cur = vp->nextarc;
+        //链到v的next
+        vp->nextarc = cur->nextarc;
+        free(cur);
+    }
+    //在w后面删除v
+    //查找 v
+    //如果第一个就是则不适用循环
+    if (wp->adjvex == pos_v) {
+        free(wp);
+        G.vertices[pos_w].firstarc = NULL;
+    } else {
+        while (wp->nextarc->adjvex != pos_v)
+            wp = wp->nextarc;
+        cur = wp->nextarc;
+        //链到w的next
+        wp->nextarc = cur->nextarc;
+        free(cur);
+    }
+    //删除完成
+    G.arcnum--;
+    return OK;
+    /********** End **********/
+}
+
+void DFS(ALGraph G, int i) {
+    ArcNode *cur;
+    visited[i] = TRUE;
+    printf("%d %s ", G.vertices[i].data.key, G.vertices[i].data.others);
+    cur = G.vertices[i].firstarc;
+    while (cur) {
+        if (!visited[cur->adjvex])
+            DFS(G, cur->adjvex);
+        cur = cur->nextarc;
+    }
+}
+
+status DFSTraverse(ALGraph &G, void (*visit)(VertexType))
+//对图G进行深度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int i;
+    for (i = 0; i < G.vexnum; i++)
+        visited[i] = FALSE;
+    for (i = 0; i < G.vexnum; i++)
+        if (!visited[i])
+            DFS(G, i);
+    return OK;
+    /********** End **********/
+}
+
+status InitQueue(Queue &Q) {
+    Q.front = 0;
+    Q.rear = 0;
+    return OK;
+}
+
+status EnQueue(Queue &Q, int e) {
+    if ((Q.rear + 1) % MAX_VERTEX_NUM == Q.front)
+        return ERROR;
+    Q.data[Q.rear] = e;
+    Q.rear = (Q.rear + 1) % MAX_VERTEX_NUM;
+    return OK;
+}
+
+status DeQueue(Queue &Q, int &e) {
+    if (Q.front == Q.rear)
+        return ERROR;
+    e = Q.data[Q.front];
+    Q.front = (Q.front + 1) % MAX_VERTEX_NUM;
+    return OK;
+}
+
+status QueueEmpty(Queue &Q) {
+    if (Q.rear == Q.front)
+        return TRUE;
+    else return ERROR;
+}
+
+status BFSTraverse(ALGraph &G, void (*visit)(VertexType))
+//对图G进行广度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    int i;
+    ArcNode *cur;
+    Queue Q;
+    for (i = 0; i < G.vexnum; i++)
+        visited[i] = FALSE;
+    InitQueue(Q);
+    for (i = 0; i < G.vexnum; i++) {
+        if (!visited[i]) {
+            visited[i] = TRUE;
+            visit(G.vertices[i].data);
+            EnQueue(Q, i);
+            while (!QueueEmpty(Q)) {
+                DeQueue(Q, i);
+                cur = G.vertices[i].firstarc;
+                while (cur) {
+                    if (!visited[cur->adjvex]) {
+                        visited[cur->adjvex] = TRUE;
+                        visit(G.vertices[cur->adjvex].data);
+                        EnQueue(Q, cur->adjvex);
+                    }
+                    cur = cur->nextarc;
+                }
+            }
+        }
+    }
+    return OK;
+    /********** End **********/
+}
+
+int OutDegree(VNode i) {
+    int num = 0;
+    ArcNode *p;
+    p = i.firstarc;
+    while (p != NULL) {
+        num++;
+        p = p->nextarc;
+    }
+    return num;
+}
+
+status SaveGraph(ALGraph G, char FileName[])
+//将图的数据写入到文件FileName中
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin 1 *********/
+    int i, num;
+    FILE *fp;
+    ArcNode *cur;
+    if ((fp = fopen(FileName, "wb")) == NULL) {
+        printf("\t\t\t保存文件失败！\n");
+        return ERROR;
+    }
+    //保存邻接表的基本信息
+    fwrite(&G.kind, sizeof(int), 1, fp);  //邻接表类型
+    fwrite(&G.vexnum, sizeof(int), 1, fp); //顶点数
+    fwrite(&G.arcnum, sizeof(int), 1, fp); //弧数
+    //保存每一个序号的节点和弧的信息
+    for (i = 0; i < G.vexnum; i++) {
+        //保存每个序号的顶点信息
+        fwrite(&G.vertices[i].data, sizeof(VertexType), 1, fp);
+        num = OutDegree(G.vertices[i]);
+        fwrite(&num, sizeof(int), 1, fp);
+        if ((cur = G.vertices[i].firstarc) != NULL) {
+            fwrite(&cur->adjvex, sizeof(int), 1, fp);
+            while ((cur = cur->nextarc) != NULL) {
+                fwrite(&(cur->adjvex), sizeof(int), 1, fp);
+            }
+        }
+    }
+    fclose(fp);
+    return OK;
+    /********** End 1 **********/
+}
+
+status LoadGraph(ALGraph &G, char FileName[])
+//读入文件FileName的图数据，创建图的邻接表
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin 2 *********/
+    int i, k = 0, num;
+    FILE *fp;
+    ArcNode *cur,*nArc;
+    if (G.vexnum != 0) return ERROR;
+    if ((fp = fopen(FileName, "rb")) == NULL) {
+        printf("\t\t\t文件加载失败！\n");
+        return ERROR;
+    }
+    fread(&G.kind, sizeof(int), 1, fp);
+    fread(&G.vexnum, sizeof(int), 1, fp);
+    fread(&G.arcnum, sizeof(int), 1, fp);
+    while (fread(&G.vertices[k].data, sizeof(VertexType), 1, fp)) {
+        fread(&num, sizeof(int), 1, fp);
+        if (num == 0)
+            G.vertices[k].firstarc = NULL;
+        else {
+            nArc = (ArcNode *) malloc(sizeof(ArcNode));
+            fread(&(nArc->adjvex), sizeof(int), 1, fp);
+            G.vertices[k].firstarc=nArc;
+            cur=nArc;
+            for (i = 0; i < num-1; i++) {
+                nArc = (ArcNode *) malloc(sizeof(ArcNode));
+                fread(&(nArc->adjvex), sizeof(int), 1, fp);
+                cur->nextarc = nArc;
+                cur=nArc;
+            }
+            cur->nextarc=NULL;
+        }
+        k++;
+    }
+    fclose(fp);
+    return OK;
+    /********** End 2 **********/
+}
+
+status GraphsTraverse(Graphs &ghs) {
+    int i, j;
+    if (ghs.length == 0){
+        printf("多图为空");
+        return OK;
+    }
+    printf("当前有以下几个图：\n");
+    for (i = 0; i < ghs.length; i++) {
+        //遍历每个图的信息
+        printf("\n图名称：%s\n", ghs.elem[i].name);
+        for (j = 0; j < ghs.elem[i].graph.vexnum; j++) {
+            //遍历邻接表
+            ArcNode *p = ghs.elem[i].graph.vertices[j].firstarc;
+            printf("%d %s", ghs.elem[i].graph.vertices[j].data.key, ghs.elem[i].graph.vertices[j].data.others);
+            while (p) {
+                printf(" %d", p->adjvex);
+                p = p->nextarc;
+            }
+            printf("\n");
+        }
+    }
+    return OK;
+}
 
